@@ -1,6 +1,10 @@
+#include <string>
+
+using namespace std;
+
 #define lli long long int
 
-bool isValidNum(lli num)
+bool isValidNumber(lli num)
 {
     for (int i = 0; i < 10; i++)
     {
@@ -16,9 +20,25 @@ bool isValidNum(lli num)
     return true;
 }
 
-bool isValidOp(int op, int n)
+bool isValidOption(int op, int n)
 {
     if (op < 1 || op > n)
         return false;
+    return true;
+}
+
+bool isValidPassword(string pass)
+{
+    int len = pass.length();
+
+    if (len < 8 || len > 12)
+        return false;
+
+    for (int i = 0; i < len; i++)
+    {
+        if (pass[i] == ' ')
+            return false;
+    }
+
     return true;
 }
