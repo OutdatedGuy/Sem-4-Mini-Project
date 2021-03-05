@@ -1,5 +1,6 @@
-.vscode
+.vscode/
 main.exe
 test.cpp
 test.exe
 files/Login/password.txt
+!Login/.keep
