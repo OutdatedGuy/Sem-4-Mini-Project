@@ -3,4 +3,5 @@ main.exe
 test.cpp
 test.exe
 files/Login/password.txt
-!Login/.keep
+!files/Login/.keep
+!files/.keep
