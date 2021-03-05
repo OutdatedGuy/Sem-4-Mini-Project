@@ -8,6 +8,7 @@ using namespace std;
 #define lli long long int
 
 //programmer defined headers
+#include "headers/files.cpp"
 #include "headers/waiting.cpp"
 #include "headers/valid.cpp"
 #include "headers/password.cpp"
@@ -16,6 +17,7 @@ using namespace std;
 
 int main()
 {
+    makePasswordFile();
     lli pNum;
     bool validUser = false;
 notValidNumber:
