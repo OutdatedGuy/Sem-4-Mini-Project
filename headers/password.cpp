@@ -9,16 +9,17 @@ using namespace std;
 
 string isExisting(lli num)
 {
-    string user, code;
+    lli user;
+    string code;
     fstream file;
-    file.open("../files/Login/password.txt", ios::in);
+    file.open("files/Login/password.txt", ios::in);
 
     while (!file.eof())
     {
         file >> user >> code;
         cout << user << " " << code << endl;
 
-        if (num == stoi(user))
+        if (num == user)
         {
             file.close();
             return code;
