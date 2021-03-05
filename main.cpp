@@ -1,21 +1,18 @@
 #include <iostream>
+#include <string>
+#include <fstream>
 #include <conio.h>
-
-#include "headers/valid.cpp"
-#include "headers/password.cpp"
-#include "headers/booking.cpp"
-#include "headers/history.cpp"
 
 using namespace std;
 
 #define lli long long int
 
-void error()
-{
-    cout << "\nPress Enter to continue...";
-    getch();
-    system("cls");
-}
+//programmer defined headers
+#include "headers/waiting.cpp"
+#include "headers/valid.cpp"
+#include "headers/password.cpp"
+#include "headers/booking.cpp"
+#include "headers/history.cpp"
 
 int main()
 {
@@ -34,7 +31,7 @@ notValidNumber:
         {
             string password;
             cout << "Enter password: ";
-            cin >> password;
+            getline(cin, password);
             cin.clear();
             fflush(stdin);
             if (password == value)
@@ -42,7 +39,7 @@ notValidNumber:
             else
             {
                 cout << "\nPassword does not Match!" << endl;
-                error();
+                waiting();
                 goto notValidNumber;
             }
         }
@@ -53,12 +50,13 @@ notValidNumber:
             getch();
             system("cls");
             createPassword(pNum);
+            goto notValidNumber;
         }
     }
     else
     {
         cout << "\nGiven Phone Number is not VALID!" << endl;
-        error();
+        waiting();
         goto notValidNumber;
     }
 
@@ -85,7 +83,7 @@ notValidNumber:
         else
         {
             cout << "\nPlease Select a VALID Option!" << endl;
-            error();
+            waiting();
             goto notValidOption;
         }
     }

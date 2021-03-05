@@ -1,9 +1,3 @@
-#include <string>
-
-using namespace std;
-
-#define lli long long int
-
 bool isValidNumber(lli num)
 {
     for (int i = 0; i < 10; i++)
@@ -16,6 +10,9 @@ bool isValidNumber(lli num)
 
         num /= 10;
     }
+
+    if (num != 0)
+        return false;
 
     return true;
 }

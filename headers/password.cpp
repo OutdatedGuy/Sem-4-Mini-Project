@@ -1,12 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <conio.h>
-
-using namespace std;
-
-#define lli long long int
-
 string isExisting(lli num)
 {
     lli user;
@@ -17,7 +8,6 @@ string isExisting(lli num)
     while (!file.eof())
     {
         file >> user >> code;
-        cout << user << " " << code << endl;
 
         if (num == user)
         {
@@ -31,7 +21,7 @@ string isExisting(lli num)
 bool registerUser(lli num, string password)
 {
     fstream pass;
-    pass.open("../files/Login/password.txt", ios::out);
+    pass.open("files/Login/password.txt", ios::app);
 
     pass << num << " " << password << endl;
     pass.close();
@@ -50,9 +40,7 @@ notValidPassword:
     cout << "Instructions:" << endl;
     cout << "1. Password should be 8 to 12 characters long" << endl;
     cout << "2. Spaces are not allowed" << endl;
-    cout << "\nPress Enter to continue...";
-    getch();
-    system("cls");
+    waiting();
 
     string password;
     cout << "Enter New Password: ";
@@ -72,18 +60,14 @@ notValidPassword:
         else
         {
             cout << "\nPassword doesn't Match!" << endl;
-            cout << "\nPress Enter to try Again...";
-            getch();
-            system("cls");
+            tryAgain();
             goto notValidPassword;
         }
     }
     else
     {
         cout << "\nPassword not VALID!" << endl;
-        cout << "\nPress Enter to try Again...";
-        getch();
-        system("cls");
+        tryAgain();
         goto notValidPassword;
     }
 
@@ -93,6 +77,5 @@ notValidPassword:
     else
         cout << "Your number is not registered due to some error!" << endl;
 
-    cout << "\nPress Enter to continue...";
-    getch();
+    waiting();
 }
