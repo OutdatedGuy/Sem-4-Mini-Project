@@ -2,6 +2,9 @@
 main.exe
 test.cpp
 test.exe
-files/Login/password.txt
-!files/Login/.keep
-!files/.keep
+database/Login/*
+!database/Login/.gitkeep
+database/Users/*
+!database/Users/.gitkeep
+database/Speciality/*
+!database/Speciality/.gitkeep

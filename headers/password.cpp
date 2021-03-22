@@ -1,9 +1,9 @@
-string isExisting(lli num)
+string isExisting(ll num)
 {
-    lli user;
+    ll user;
     string code;
     fstream file;
-    file.open("files/Login/password.txt", ios::in);
+    file.open("database/Login/password.txt", ios::in);
 
     while (!file.eof())
     {
@@ -18,10 +18,10 @@ string isExisting(lli num)
     return "-1";
 }
 
-bool registerUser(lli num, string password)
+bool registerUser(ll num, string password)
 {
     fstream pass;
-    pass.open("files/Login/password.txt", ios::app);
+    pass.open("database/Login/password.txt", ios::app);
 
     pass << num << " " << password << endl;
     pass.close();
@@ -33,7 +33,7 @@ bool registerUser(lli num, string password)
     return false;
 }
 
-void createPassword(lli num)
+void createPassword(ll num)
 {
     bool registered = false;
 notValidPassword:
@@ -73,7 +73,10 @@ notValidPassword:
 
     system("cls");
     if (registered)
+    {
+        makeUserDirectory(to_string(num));
         cout << "Your number is registered successfully!" << endl;
+    }
     else
         cout << "Your number is not registered due to some error!" << endl;
 

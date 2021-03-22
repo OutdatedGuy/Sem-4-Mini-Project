@@ -2,10 +2,10 @@
 #include <string>
 #include <fstream>
 #include <conio.h>
-
+#include <vector>
 using namespace std;
 
-#define lli long long int
+#define ll long long
 
 //programmer defined headers
 #include "headers/files.cpp"
@@ -18,7 +18,7 @@ using namespace std;
 int main()
 {
     makePasswordFile();
-    lli pNum;
+    ll pNum;
     bool validUser = false;
 notValidNumber:
     cout << "Enter Your Phone Number: ";
@@ -41,7 +41,7 @@ notValidNumber:
             else
             {
                 cout << "\nPassword does not Match!" << endl;
-                waiting();
+                tryAgain();
                 goto notValidNumber;
             }
         }
@@ -58,7 +58,7 @@ notValidNumber:
     else
     {
         cout << "\nGiven Phone Number is not VALID!" << endl;
-        waiting();
+        tryAgain();
         goto notValidNumber;
     }
 
@@ -77,15 +77,19 @@ notValidNumber:
 
         if (isValidOption(op, 2))
         {
+            bool state = true;
             if (op == 1)
-                bookAppointment(pNum);
+                state = bookAppointment(pNum);
             else
-                appointmentHistory(pNum);
+                state = appointmentHistory(pNum);
+
+            if (!state)
+                goto notValidOption;
         }
         else
         {
             cout << "\nPlease Select a VALID Option!" << endl;
-            waiting();
+            tryAgain();
             goto notValidOption;
         }
     }
