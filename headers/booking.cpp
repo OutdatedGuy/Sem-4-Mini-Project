@@ -1,15 +1,27 @@
-bool bookAppointment(ll pNum)
+bool bookAppointment(string str, ll pNum)
+{
+    ll i = 0;
+    while (str[i] != 0)
+        i++;
+
+    if (str.substr(i + 1) == "Taken")
+        return false;
+
+    return true;
+}
+
+void searchDoctor(ll pNum)
 {
     vector<string> list;
 Speciality:
     system("cls");
-    string pathName = "Speciality";
-    ll count = displayList(pathName, list);
+    string specialityPath = "Speciality";
+    ll count = displayList(specialityPath, list);
 
     if (count == 1)
     {
         goBack("Specialities");
-        return false;
+        return;
     }
     else
     {
@@ -17,13 +29,13 @@ Speciality:
         ll option;
         cin >> option;
         if (option == count)
-            return false;
+            return;
         if (isValidOption(option, count))
         {
+            string doctorPath = (specialityPath + "/" + list[option - 1]);
         Doctor:
             system("cls");
-            pathName += ("/" + list[option - 1]);
-            count = displayList(pathName, list);
+            count = displayList(doctorPath, list);
 
             if (count == 1)
             {
@@ -38,10 +50,10 @@ Speciality:
                     goto Speciality;
                 if (isValidOption(option, count))
                 {
+                    string schedulePath = (doctorPath + "/" + list[option - 1]);
                 Schedule:
                     system("cls");
-                    pathName += ("/" + list[option - 1]);
-                    count = displayList(pathName, list);
+                    count = displayList(schedulePath, list);
                     if (count == 1)
                     {
                         goBack("Schedule");
@@ -55,8 +67,25 @@ Speciality:
                             goto Doctor;
                         if (isValidOption(option, count))
                         {
-                            pathName += ("/" + list[option - 1]);
-                            // count = displayFile(pathName, list);
+                            string filePath = (schedulePath + "/" + list[option - 1]);
+                            system("cls");
+                            count = displayFile(filePath, list);
+                            if (count == 1)
+                            {
+                                goBack("Slots");
+                                goto Schedule;
+                            }
+                            else
+                            {
+                                cout << count << ") Go Back\n\n:";
+                                cin >> option;
+                                if (option == count)
+                                    goto Schedule;
+                                else if (!bookAppointment(list[option - 1], pNum))
+                                    goto Schedule;
+                                else
+                                    return;
+                            }
                         }
                         else
                         {
@@ -81,4 +110,6 @@ Speciality:
             goto Speciality;
         }
     }
+
+    return;
 }

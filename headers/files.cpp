@@ -3,7 +3,7 @@ void makePasswordFile()
     fstream file;
     file.open("database/Login/password.txt", ios::app);
     file.close();
-    file.open("database/Login/admin.txt", ios::app);
+    file.open("database/Login/doctors.txt", ios::app);
     file.close();
 }
 
@@ -31,6 +31,36 @@ ll displayList(string directory, vector<string> &str)
 
         str.push_back(s);
         cout << count << ") " + s << endl;
+        count++;
+    }
+    file.close();
+    return count;
+}
+
+ll displayFile(string filePath, vector<string> &str)
+{
+    str.clear();
+    fstream file;
+    file.open("database/" + filePath, ios::in);
+
+    ll count = 0;
+    while (!file.eof())
+    {
+        string s;
+        getline(file, s);
+        cin.clear();
+        fflush(stdin);
+        if (s[0] == '\0')
+            continue;
+
+        str.push_back(s);
+        if (count)
+        {
+            cout << count << ") " + s << endl;
+            str.push_back(s);
+        }
+        else
+            cout << s << endl;
         count++;
     }
     file.close();

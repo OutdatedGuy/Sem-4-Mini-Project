@@ -1,4 +1,4 @@
-bool appointmentHistory(ll pNum)
+void appointmentHistory(ll pNum)
 {
     
 }

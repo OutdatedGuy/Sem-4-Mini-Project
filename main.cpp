@@ -22,7 +22,8 @@ int main()
     bool validUser = false;
 notValidNumber:
     cout << "Enter Your Phone Number: ";
-    cin >> pNum;
+    // cin >> pNum; for development ease
+    pNum = 9665143134;
     cin.clear();
     fflush(stdin);
 
@@ -33,9 +34,10 @@ notValidNumber:
         {
             string password;
             cout << "Enter password: ";
-            getline(cin, password);
-            cin.clear();
-            fflush(stdin);
+            // getline(cin, password);
+            // cin.clear();
+            // fflush(stdin); for development ease
+            password = value;
             if (password == value)
                 validUser = true;
             else
@@ -77,14 +79,12 @@ notValidNumber:
 
         if (isValidOption(op, 2))
         {
-            bool state = true;
             if (op == 1)
-                state = bookAppointment(pNum);
+                searchDoctor(pNum);
             else
-                state = appointmentHistory(pNum);
+                appointmentHistory(pNum);
 
-            if (!state)
-                goto notValidOption;
+            goto notValidOption;
         }
         else
         {
