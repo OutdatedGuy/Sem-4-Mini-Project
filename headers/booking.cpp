@@ -23,8 +23,8 @@ void searchDoctor(ll pNum)
     vector<string> list;
 Speciality:
     system("cls");
-    string specialityPath = "Speciality";
-    ll count = displayList(specialityPath, list);
+    string directoryPath = "Speciality";
+    ll count = displayList(directoryPath, list);
 
     if (count == 1)
     {
@@ -42,7 +42,7 @@ Speciality:
             return;
         if (isValidOption(option, count))
         {
-            string doctorPath = (specialityPath + "/" + list[option - 1]);
+            string doctorPath = (directoryPath + "/" + list[option - 1]);
         Doctor:
             system("cls");
             count = displayList(doctorPath, list);
