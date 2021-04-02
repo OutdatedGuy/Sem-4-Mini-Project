@@ -136,10 +136,130 @@ void updateUserHistory(ll pNum, string filePath, string time)
     end++;
     start = end;
 
-    system(("cd database/Users/" + user + " && mkdir " + type + " && cd " + type + " && mkdir " + doctor).c_str());
+    system(("cd database/Users/" + user + " && mkdir \"" + type + "\"").c_str());
+    system(("cd database/Users/" + user + "/" + type + " && mkdir \"" + doctor + "\"").c_str());
 
     fstream file;
     file.open("database/Users/" + user + "/" + type + "/" + doctor + "/" + date, ios::out);
     file << "Appointment with " + type + " " + doctor + " on " + date + " at " + time << endl;
+    file.close();
+}
+
+void fillSchedule(string fName, string date, string time, string docPath, bool present)
+{
+    fstream schedule;
+    if (!present)
+    {
+        schedule.open(docPath + "/" + date + ".txt", ios::out);
+        schedule << "Time\t\tSlots\n\n";
+
+        string slot = "10:00";
+        int count = 1;
+        while (slot != "19:00")
+        {
+            schedule << slot;
+            schedule << "\tAvailable" << endl;
+
+            slot = slot[0] + to_string(count) + slot.substr(2);
+            count++;
+        }
+    }
+    else
+    {
+        schedule.open(docPath + "/" + date + ".txt", ios::in);
+        vector<string> s;
+        ll len = 0;
+        while (!schedule.eof())
+        {
+            string data;
+            getline(schedule, data);
+            s.push_back(data);
+            len++;
+        }
+        schedule.close();
+
+        schedule.open(docPath + "/" + date + ".txt", ios::out);
+        schedule << "Time\t\tSlots\n\n";
+
+        string slot = "10:00";
+        int count = 0;
+        while ((stoi(slot.substr(0, 2)) <= stoi(time.substr(0, 2))) && count < 10)
+        {
+            schedule << slot;
+            schedule << "\tTaken" << endl;
+
+            count++;
+            slot = slot[0] + to_string(count) + slot.substr(2);
+        }
+        for (ll i = count + 2; i < len; i++)
+        {
+            if (s[i][0] == '\0' || s[i][0] == '\n')
+                continue;
+            schedule << s[i] << endl;
+        }
+    }
+
+    schedule.close();
+}
+
+void fillDoctorSchedule()
+{
+    system("cd database/Speciality && dir /b > files.txt");
+    fstream file;
+    file.open("database/Speciality/files.txt", ios::in);
+
+    string date = __DATE__;
+    ll day = stoi(date.substr(4, 2));
+    day += 2;
+    string date2;
+    if (day / 10 == 0)
+        date2 = date.substr(0, 5) + to_string(day) + date.substr(6);
+    else
+        date2 = date.substr(0, 4) + to_string(day) + date.substr(6);
+    string time = __TIME__;
+
+    while (!file.eof())
+    {
+        system("cls");
+        string s;
+        file >> s;
+
+        if (s == ".gitkeep" || s == "files.txt" || s[0] == '\0' || s[0] == '\n')
+            continue;
+
+        string path = "database/Speciality/" + s;
+        system(("cd " + path + " && dir /b > files.txt").c_str());
+
+        fstream doctor;
+        doctor.open(path + "/files.txt", ios::in);
+        while (!doctor.eof())
+        {
+            system("cls");
+            string docName;
+            getline(doctor, docName);
+
+            if (docName == ".gitkeep" || docName == "files.txt" || docName[0] == '\0' || docName[0] == '\n')
+                continue;
+
+            string docPath = path + "/" + docName;
+            system(("cd " + docPath + " && dir /b > files.txt").c_str());
+
+            fstream record;
+            record.open(docPath + "/files.txt", ios::in);
+            string fName;
+            getline(record, fName);
+            if (fName != (date + ".txt"))
+                fillSchedule(fName, date2, time, docPath, false);
+            else
+                fillSchedule(fName, date, time, docPath, true);
+            if (fName != "files.txt" && fName != (date + ".txt"))
+                system(("cd " + docPath + " && del /f \"" + fName + "\"").c_str());
+            record.close();
+            system(("cd " + docPath + " && del /f files.txt").c_str());
+        }
+        doctor.close();
+        system(("cd " + path + " && del /f files.txt").c_str());
+    }
+
     file.close();
 }

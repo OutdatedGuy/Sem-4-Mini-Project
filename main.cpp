@@ -3,6 +3,7 @@
 #include <fstream>
 #include <conio.h>
 #include <vector>
+#include <ctime>
 using namespace std;
 
 #define ll long long
@@ -18,6 +19,7 @@ using namespace std;
 int main()
 {
     makePasswordFile();
+    fillDoctorSchedule();
     ll pNum;
     bool validUser = false;
 notValidNumber:
