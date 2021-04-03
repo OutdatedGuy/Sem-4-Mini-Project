@@ -6,6 +6,6 @@ Time		Slots
 13:00	Available
 14:00	Available
 15:00	Available
-16:00	Available
+16:00	Taken
 17:00	Available
 18:00	Available

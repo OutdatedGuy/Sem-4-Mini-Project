@@ -8,4 +8,4 @@ Time		Slots
 15:00	Available
 16:00	Available
 17:00	Available
-18:00	Available
+18:00	Taken
