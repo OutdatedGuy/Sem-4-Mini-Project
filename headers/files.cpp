@@ -141,7 +141,7 @@ void updateUserHistory(ll pNum, string filePath, string time)
 
     fstream file;
     file.open("database/Users/" + user + "/" + type + "/" + doctor + "/" + date, ios::out);
-    file << "Appointment with " + type + " " + doctor + " on " + date + " at " + time << endl;
+    file << "Appointment with " + type + " " + doctor + " on " + date.substr(0, date.length() - 4) + " at " + time << endl;
     file.close();
 }
 
@@ -260,6 +260,36 @@ void fillDoctorSchedule()
         doctor.close();
         system(("cd " + path + " && del /f files.txt").c_str());
     }
+
+    file.close();
+}
+
+void availSchedule(string filePath, string time)
+{
+    system("cls");
+
+    vector<string> list;
+
+    fstream file;
+    file.open("database/" + filePath, ios::in);
+
+    while (!file.eof())
+    {
+        string s;
+        getline(file, s);
+        list.push_back(s);
+    }
+    file.close();
+
+    for (ll i = 2; i < list.size() - 1; i++)
+        if (list[i].substr(0, 2) == time.substr(0, 2))
+            list[i] = time + "\tAvailable";
+
+
+    file.open("database/" + filePath, ios::out);
+    for (ll i = 0; i < list.size() - 1; i++)
+        file << list[i] << endl;
+
 
     file.close();
 }

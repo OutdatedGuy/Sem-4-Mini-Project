@@ -1,4 +1,4 @@
-void appointmentHistory(ll pNum)
+string appointmentHistory(ll pNum, bool cancel)
 {
     vector<string> list;
 Speciality:
@@ -9,17 +9,18 @@ Speciality:
     if (count == 1)
     {
         goBack("Appointment");
-        return;
+        return "";
     }
     else
     {
-        cout << count << ") Go Back\n\n:";
+        cout << count << ") Go Back\n\n";
+        cout << "Enter Your Choice: ";
         ll option;
         cin >> option;
         cin.clear();
         fflush(stdin);
         if (option == count)
-            return;
+            return "";
         if (isValidOption(option, count))
         {
             string doctorPath = (directoryPath + "/" + list[option - 1]);
@@ -34,7 +35,8 @@ Speciality:
             }
             else
             {
-                cout << count << ") Go Back\n\n:";
+                cout << count << ") Go Back\n\n";
+                cout << "Enter Your Choice: ";
                 cin >> option;
                 cin.clear();
                 fflush(stdin);
@@ -53,7 +55,8 @@ Speciality:
                     }
                     else
                     {
-                        cout << count << ") Go Back\n\n:";
+                        cout << count << ") Go Back\n\n";
+                        cout << "Enter Your Choice: ";
                         cin >> option;
                         cin.clear();
                         fflush(stdin);
@@ -61,17 +64,24 @@ Speciality:
                             goto Doctor;
                         if (isValidOption(option, count))
                         {
-                            system("cls");
                             string filePath = (schedulePath + "/" + list[option - 1]);
-                            displayFile(filePath, list);
-                            getch();
-                            cout << "\nPress Enter to Go Back...";
-                            getch();
-                            goto Schedule;
+                            if (!cancel)
+                            {
+                                system("cls");
+                                displayFile(filePath, list);
+                                getch();
+                                cout << "\nPress Enter to Go Back...";
+                                getch();
+                                goto Schedule;
+                            }
+                            else if (!confirm())
+                                goto Schedule;
+                            else
+                                return filePath;
                         }
                         else
                         {
-                            cout << "\nPlease Select a VALID Option!" << endl;
+                            cout << "\nPlease Select a VALID Option! (from 1 to " << count << ")" << endl;
                             tryAgain();
                             goto Schedule;
                         }
@@ -79,7 +89,7 @@ Speciality:
                 }
                 else
                 {
-                    cout << "\nPlease Select a VALID Option!" << endl;
+                    cout << "\nPlease Select a VALID Option! (from 1 to " << count << ")" << endl;
                     tryAgain();
                     goto Doctor;
                 }
@@ -87,11 +97,11 @@ Speciality:
         }
         else
         {
-            cout << "\nPlease Select a VALID Option!" << endl;
+            cout << "\nPlease Select a VALID Option! (from 1 to " << count << ")" << endl;
             tryAgain();
             goto Speciality;
         }
     }
 
-    return;
+    return "";
 }

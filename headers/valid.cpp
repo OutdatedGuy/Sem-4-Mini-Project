@@ -39,3 +39,17 @@ bool isValidPassword(string pass)
 
     return true;
 }
+
+bool confirm()
+{
+    cout << "\nEnter Y/y to confirm: ";
+    string done;
+    getline(cin, done);
+    cin.clear();
+    fflush(stdin);
+
+    if (done == "Y" || done == "y" || done == "Yes" || done == "yes")
+        return true;
+
+    return false;
+}

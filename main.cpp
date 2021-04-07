@@ -13,16 +13,17 @@ using namespace std;
 #include "headers/waiting.cpp"
 #include "headers/valid.cpp"
 #include "headers/password.cpp"
-#include "headers/booking.cpp"
 #include "headers/history.cpp"
+#include "headers/booking.cpp"
 
 int main()
 {
     makePasswordFile();
     fillDoctorSchedule();
     ll pNum;
-    bool validUser = false;
 notValidNumber:
+    system("cls");
+    bool validUser = false;
     cout << "Enter Your Phone Number: ";
     cin >> pNum;
     // pNum = 9665143134; // for development ease
@@ -73,24 +74,44 @@ notValidNumber:
         int op;
         cout << "1. Book Appointment" << endl;
         cout << "2. Search Appointment History" << endl;
-        cout << "\n:";
+        cout << "3. Re-Schedule Appointment" << endl;
+        cout << "4. Cancel Appointment" << endl;
+        cout << "5. Logout" << endl;
+        cout << "\nEnter Your Choice: ";
 
         cin >> op;
         cin.clear();
         fflush(stdin);
 
-        if (isValidOption(op, 2))
+        if (isValidOption(op, 5))
         {
-            if (op == 1)
+            switch (op)
+            {
+            case 1:
                 searchDoctor(pNum);
-            else
-                appointmentHistory(pNum);
+                break;
+
+            case 2:
+                appointmentHistory(pNum, false);
+                break;
+
+            case 3:
+                reSchedule(pNum);
+                break;
+
+            case 4:
+                cancelAppointment(pNum);
+                break;
+
+            default:
+                goto notValidNumber;
+            }
 
             goto notValidOption;
         }
         else
         {
-            cout << "\nPlease Select a VALID Option!" << endl;
+            cout << "\nPlease Select a VALID Option! (from 1 to 5)" << endl;
             tryAgain();
             goto notValidOption;
         }
