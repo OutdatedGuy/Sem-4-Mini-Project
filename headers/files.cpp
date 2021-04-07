@@ -1,23 +1,23 @@
 void makePasswordFile()
 {
     fstream file;
-    file.open("database/Login/password.txt", ios::app);
+    file.open("devDatabase/Login/password.txt", ios::app);
     file.close();
-    file.open("database/Login/doctors.txt", ios::app);
+    file.open("devDatabase/Login/doctors.txt", ios::app);
     file.close();
 }
 
 void makeUserDirectory(string num)
 {
-    system(("cd database/Users && mkdir " + num).c_str());
+    system(("cd devDatabase/Users && mkdir " + num).c_str());
 }
 
 ll displayList(string directory, vector<string> &str)
 {
     str.clear();
-    system(("cd database/" + directory + " && dir /b > files.txt").c_str());
+    system(("cd devDatabase/" + directory + " && dir /b > files.txt").c_str());
     fstream file;
-    file.open("database/" + directory + "/files.txt", ios::in);
+    file.open("devDatabase/" + directory + "/files.txt", ios::in);
 
     ll count = 1;
     while (!file.eof())
@@ -42,7 +42,7 @@ ll displayFile(string filePath, vector<string> &str)
 {
     str.clear();
     fstream file;
-    file.open("database/" + filePath, ios::in);
+    file.open("devDatabase/" + filePath, ios::in);
 
     ll count = 0;
     while (!file.eof())
@@ -74,7 +74,7 @@ void updateFile(string filePath, ll option)
     vector<string> str;
 
     fstream file;
-    file.open("database/" + filePath, ios::in);
+    file.open("devDatabase/" + filePath, ios::in);
 
     ll count = 0;
     while (!file.eof())
@@ -98,7 +98,7 @@ void updateFile(string filePath, ll option)
     }
     file.close();
 
-    file.open("database/" + filePath, ios::out);
+    file.open("devDatabase/" + filePath, ios::out);
     for (ll i = 0; i < str.size(); i++)
     {
         file << str[i] << endl;
@@ -136,11 +136,11 @@ void updateUserHistory(ll pNum, string filePath, string time)
     end++;
     start = end;
 
-    system(("cd database/Users/" + user + " && mkdir \"" + type + "\"").c_str());
-    system(("cd database/Users/" + user + "/" + type + " && mkdir \"" + doctor + "\"").c_str());
+    system(("cd devDatabase/Users/" + user + " && mkdir \"" + type + "\"").c_str());
+    system(("cd devDatabase/Users/" + user + "/" + type + " && mkdir \"" + doctor + "\"").c_str());
 
     fstream file;
-    file.open("database/Users/" + user + "/" + type + "/" + doctor + "/" + date, ios::out);
+    file.open("devDatabase/Users/" + user + "/" + type + "/" + doctor + "/" + date, ios::out);
     file << "Appointment with " + type + " " + doctor + " on " + date.substr(0, date.length() - 4) + " at " + time << endl;
     file.close();
 }
@@ -204,9 +204,9 @@ void fillSchedule(string fName, string date, string time, string docPath, bool p
 
 void fillDoctorSchedule()
 {
-    system("cd database/Speciality && dir /b > files.txt");
+    system("cd devDatabase/Speciality && dir /b > files.txt");
     fstream file;
-    file.open("database/Speciality/files.txt", ios::in);
+    file.open("devDatabase/Speciality/files.txt", ios::in);
 
     string date = __DATE__;
     ll day = stoi(date.substr(4, 2));
@@ -227,7 +227,7 @@ void fillDoctorSchedule()
         if (s == ".gitkeep" || s == "files.txt" || s[0] == '\0' || s[0] == '\n')
             continue;
 
-        string path = "database/Speciality/" + s;
+        string path = "devDatabase/Speciality/" + s;
         system(("cd " + path + " && dir /b > files.txt").c_str());
 
         fstream doctor;
@@ -271,7 +271,7 @@ void availSchedule(string filePath, string time)
     vector<string> list;
 
     fstream file;
-    file.open("database/" + filePath, ios::in);
+    file.open("devDatabase/" + filePath, ios::in);
 
     while (!file.eof())
     {
@@ -286,7 +286,7 @@ void availSchedule(string filePath, string time)
             list[i] = time + "\tAvailable";
 
 
-    file.open("database/" + filePath, ios::out);
+    file.open("devDatabase/" + filePath, ios::out);
     for (ll i = 0; i < list.size() - 1; i++)
         file << list[i] << endl;
 

@@ -3,7 +3,7 @@ string isExisting(ll num)
     ll user;
     string code;
     fstream file;
-    file.open("database/Login/password.txt", ios::in);
+    file.open("devDatabase/Login/password.txt", ios::in);
 
     while (!file.eof())
     {
@@ -21,7 +21,7 @@ string isExisting(ll num)
 bool registerUser(ll num, string password)
 {
     fstream pass;
-    pass.open("database/Login/password.txt", ios::app);
+    pass.open("devDatabase/Login/password.txt", ios::app);
 
     pass << num << " " << password << endl;
     pass.close();
