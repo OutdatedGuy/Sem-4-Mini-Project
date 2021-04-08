@@ -25,8 +25,8 @@ notValidNumber:
     system("cls");
     bool validUser = false;
     cout << "Enter Your Phone Number: ";
-    cin >> pNum;
-    // pNum = 9665143134; // for development ease
+    // cin >> pNum;
+    pNum = 9665143134; // for development ease
     cin.clear();
     fflush(stdin);
 
@@ -37,10 +37,10 @@ notValidNumber:
         {
             string password;
             cout << "Enter password: ";
-            getline(cin, password);
+            // getline(cin, password);
             cin.clear();
             fflush(stdin);
-            // password = value; // for development ease
+            password = value; // for development ease
             if (password == value)
                 validUser = true;
             else
@@ -96,11 +96,11 @@ notValidNumber:
                 break;
 
             case 3:
-                reSchedule(pNum);
+                cancelAppointment(pNum, true);
                 break;
 
             case 4:
-                cancelAppointment(pNum);
+                cancelAppointment(pNum, false);
                 break;
 
             default:

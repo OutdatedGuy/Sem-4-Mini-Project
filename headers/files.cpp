@@ -285,11 +285,9 @@ void availSchedule(string filePath, string time)
         if (list[i].substr(0, 2) == time.substr(0, 2))
             list[i] = time + "\tAvailable";
 
-
     file.open("devDatabase/" + filePath, ios::out);
     for (ll i = 0; i < list.size() - 1; i++)
         file << list[i] << endl;
-
 
     file.close();
 }
