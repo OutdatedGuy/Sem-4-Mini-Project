@@ -235,7 +235,7 @@ void cancelAppointment(ll pNum, bool re_Schedule)
     system("cls");
 
     fstream file;
-    file.open("devDatabase/" + filePath, ios::in);
+    file.open("database/" + filePath, ios::in);
 
     string s;
     do
@@ -314,9 +314,9 @@ void cancelAppointment(ll pNum, bool re_Schedule)
         if (filePath[i] == '/')
             filePath[i] = '\\';
 
-    system(("cd . && del /f \"devDatabase\\" + filePath + "\"").c_str());
+    system(("cd . && del /f \"database\\" + filePath + "\"").c_str());
     system("cls");
-    file.open("devDatabase/" + filePath, ios::in);
+    file.open("database/" + filePath, ios::in);
 
     system("cls");
     if (!file)
