@@ -266,7 +266,7 @@ void fillDoctorSchedule()
 
 void availSchedule(string filePath, string time)
 {
-    system("cls");
+    heading("Cancelling Appointment");
 
     vector<string> list;
 

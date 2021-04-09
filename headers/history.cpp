@@ -2,7 +2,7 @@ string appointmentHistory(ll pNum, bool cancel)
 {
     vector<string> list;
 Speciality:
-    system("cls");
+    heading("Appointment History");
     string directoryPath = "Users/" + to_string(pNum);
     ll count = displayList(directoryPath, list);
 
@@ -25,7 +25,7 @@ Speciality:
         {
             string doctorPath = (directoryPath + "/" + list[option - 1]);
         Doctor:
-            system("cls");
+            heading("Appointment History");
             count = displayList(doctorPath, list);
 
             if (count == 1)
@@ -46,7 +46,7 @@ Speciality:
                 {
                     string schedulePath = (doctorPath + "/" + list[option - 1]);
                 Schedule:
-                    system("cls");
+                    heading("Appointment History");
                     count = displayList(schedulePath, list);
                     if (count == 1)
                     {
@@ -67,7 +67,7 @@ Speciality:
                             string filePath = (schedulePath + "/" + list[option - 1]);
                             if (!cancel)
                             {
-                                system("cls");
+                                heading("Appointment History");
                                 displayFile(filePath, list);
                                 getch();
                                 cout << "\nPress Enter to Go Back...";
