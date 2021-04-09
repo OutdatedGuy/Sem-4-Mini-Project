@@ -37,10 +37,13 @@ void createPassword(ll num)
 {
     bool registered = false;
 notValidPassword:
+    heading("Registration Instructions");
     cout << "Instructions:" << endl;
     cout << "1. Password should be 8 to 12 characters long" << endl;
     cout << "2. Spaces are not allowed" << endl;
     waiting();
+
+    heading("Create Password");
 
     string password;
     cout << "Enter New Password: ";
@@ -71,7 +74,7 @@ notValidPassword:
         goto notValidPassword;
     }
 
-    system("cls");
+    heading("Registration");
     if (registered)
     {
         makeUserDirectory(to_string(num));

@@ -4,11 +4,13 @@
 #include <conio.h>
 #include <vector>
 #include <ctime>
+#include <windows.h>
 using namespace std;
 
 #define ll long long
 
 //programmer defined headers
+#include "headers/style.cpp"
 #include "headers/files.cpp"
 #include "headers/waiting.cpp"
 #include "headers/valid.cpp"
@@ -19,14 +21,14 @@ using namespace std;
 int main()
 {
     makePasswordFile();
-    fillDoctorSchedule();
+    // fillDoctorSchedule();
     ll pNum;
 notValidNumber:
-    system("cls");
+    heading("Login/SignUp");
     bool validUser = false;
     cout << "Enter Your Phone Number: ";
-    // cin >> pNum;
-    pNum = 9665143134; // for development ease
+    cin >> pNum;
+    // pNum = 9665143134; // for development ease
     cin.clear();
     fflush(stdin);
 
@@ -37,10 +39,10 @@ notValidNumber:
         {
             string password;
             cout << "Enter password: ";
-            // getline(cin, password);
+            getline(cin, password);
             cin.clear();
             fflush(stdin);
-            password = value; // for development ease
+            // password = value; // for development ease
             if (password == value)
                 validUser = true;
             else
@@ -55,7 +57,6 @@ notValidNumber:
             cout << "You are not an Existing User!" << endl;
             cout << "\nPress Enter to create a Password...";
             getch();
-            system("cls");
             createPassword(pNum);
             goto notValidNumber;
         }
@@ -70,7 +71,7 @@ notValidNumber:
     if (validUser)
     {
     notValidOption:
-        system("cls");
+        heading("Main Menu");
         int op;
         cout << "1. Book Appointment" << endl;
         cout << "2. Search Appointment History" << endl;

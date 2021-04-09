@@ -10,7 +10,7 @@ bool bookAppointment(string str, ll option, string filePath, ll pNum)
     updateFile(filePath, option);
     updateUserHistory(pNum, filePath, str.substr(0, i));
 
-    system("cls");
+    heading("Appointment Booked");
     cout << "Appointment Sucessfully Made" << endl;
     cout << "\nGo to Appointment History to view details" << endl;
     waiting();
@@ -22,7 +22,7 @@ void searchDoctor(ll pNum)
 {
     vector<string> list;
 Speciality:
-    system("cls");
+    heading("Select Speciality");
     string directoryPath = "Speciality";
     ll count = displayList(directoryPath, list);
 
@@ -45,7 +45,7 @@ Speciality:
         {
             string doctorPath = (directoryPath + "/" + list[option - 1]);
         Doctor:
-            system("cls");
+            heading("Select Doctor");
             count = displayList(doctorPath, list);
 
             if (count == 1)
@@ -66,7 +66,7 @@ Speciality:
                 {
                     string schedulePath = (doctorPath + "/" + list[option - 1]);
                 Schedule:
-                    system("cls");
+                    heading("Select Schedule");
                     count = displayList(schedulePath, list);
                     if (count == 1)
                     {
@@ -86,7 +86,7 @@ Speciality:
                         {
                             string filePath = (schedulePath + "/" + list[option - 1]);
                         Week:
-                            system("cls");
+                            heading("Select Timing");
                             count = displayFile(filePath, list);
                             if (count == 0)
                             {
@@ -155,11 +155,10 @@ int reSchedule(ll pNum, string type, string doctor, string day)
 {
     vector<string> list;
 Schedule:
-    system("cls");
+    heading("Select Schedule");
     string schedulePath = "Speciality/" + type + "/" + doctor;
     ll count = displayList(schedulePath, list);
-    system("cls");
-    count = displayList(schedulePath, list);
+
     if (count == 1)
     {
         goBack("Schedule");
@@ -179,7 +178,7 @@ Schedule:
         {
             string filePath = (schedulePath + "/" + list[option - 1]);
         Week:
-            system("cls");
+            heading("Select Re-Schedule Timing");
             count = displayFile(filePath, list);
             if (count == 0)
             {
@@ -228,7 +227,6 @@ Schedule:
 
 void cancelAppointment(ll pNum, bool re_Schedule)
 {
-    system("cls");
     string filePath = appointmentHistory(pNum, true);
     if (filePath == "")
         return;
@@ -275,7 +273,7 @@ void cancelAppointment(ll pNum, bool re_Schedule)
 
     if (day2 < day1)
     {
-        system("cls");
+        heading("Select Valid Appointment");
         cout << "Appointment already DUE!" << endl;
         cout << "\nPress Enter to go Back...";
         getch();
@@ -286,7 +284,7 @@ void cancelAppointment(ll pNum, bool re_Schedule)
         string timeNow = __TIME__;
         if (stoi(time.substr(0, 2)) <= stoi(timeNow.substr(0, 2)))
         {
-            system("cls");
+            heading("Select Valid Appointment");
             cout << "Appointment already DUE!" << endl;
             cout << "\nPress Enter to go Back...";
             getch();
@@ -315,10 +313,8 @@ void cancelAppointment(ll pNum, bool re_Schedule)
             filePath[i] = '\\';
 
     system(("cd . && del /f \"devDatabase\\" + filePath + "\"").c_str());
-    system("cls");
     file.open("devDatabase/" + filePath, ios::in);
 
-    system("cls");
     if (!file)
     {
         string schedulePath = "Speciality/" + type + "/" + doctor + "/" + date + ".txt";
@@ -330,6 +326,7 @@ void cancelAppointment(ll pNum, bool re_Schedule)
     }
     else
     {
+        heading("Cancelling Appointment");
         if (done == 2)
             cout << "Appointment Re-Scheduling Failed!!!" << endl;
         else
