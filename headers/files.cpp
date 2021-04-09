@@ -3,8 +3,6 @@ void makePasswordFile()
     fstream file;
     file.open("database/Login/password.txt", ios::app);
     file.close();
-    file.open("database/Login/doctors.txt", ios::app);
-    file.close();
 }
 
 void makeUserDirectory(string num)
