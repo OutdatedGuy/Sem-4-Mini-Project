@@ -7,3 +7,4 @@ database/Login/*
 database/Users/*
 !database/Users/.gitkeep
 devDatabase/
+**/files.txt
