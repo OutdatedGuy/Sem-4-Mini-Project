@@ -1,7 +1,7 @@
 Time		Slots
 
-10:00	Available
-11:00	Available
+10:00	Taken
+11:00	Taken
 12:00	Available
 13:00	Available
 14:00	Available
