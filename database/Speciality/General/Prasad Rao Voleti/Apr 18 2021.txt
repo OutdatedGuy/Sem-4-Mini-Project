@@ -1,0 +1,12 @@
+Time		Slots
+
+10:00	Taken
+11:00	Taken
+12:00	Taken
+13:00	Taken
+14:00	Taken
+15:00	Taken
+16:00	Taken
+17:00	Taken
+18:00	Taken
+19:00	Taken
