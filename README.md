@@ -1,9 +1,10 @@
 # Mini-Project
 
-A simple project for <b>Doctor's Appointment System</b>  
-- To select Doctors and make Appointment according to your convenience through online mode  
-- Re-Scheduling and Appointment Cancelling Feature  
-- Login/SignUp Feature  
+A simple project for <b>Doctor's Appointment System</b>
+
+-   To select Doctors and make Appointment according to your convenience through online mode
+-   Re-Scheduling and Appointment Cancelling Feature
+-   Login/SignUp Feature
 
 # Start
 
@@ -13,7 +14,8 @@ Run `./main`
 
 # Development
 
-- Made using C++ language  
-- Compiler Required `C++17`  
-- Operating System `Windows`  
-- A Mini-Project for College work
+-   Made using C++ language
+-   Compiler Required `C++17`
+-   Operating System `Windows`
+-   A Mini-Project for College work
+-   Github Repo [Here](https://github.com/OutdatedGuy/Mini-Project)
