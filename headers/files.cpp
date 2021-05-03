@@ -200,7 +200,7 @@ void fillSchedule(string fName, string date, string time, string docPath, bool p
     schedule.close();
 }
 
-void fillDoctorSchedule()
+void fillDoctorSchedule(int inc)
 {
     system("cd database/Speciality && dir /b > files.txt");
     fstream file;
@@ -208,7 +208,7 @@ void fillDoctorSchedule()
 
     string date = __DATE__;
     ll day = stoi(date.substr(4, 2));
-    // day += 2;
+    day += inc;
     string date2;
     if (day / 10 == 0)
         date2 = date.substr(0, 5) + to_string(day) + date.substr(6);

@@ -21,8 +21,10 @@ using namespace std;
 int main()
 {
     makePasswordFile();
-    for (int i = 0; i < 4; i++)
-        fillDoctorSchedule();
+    for (int i = 0; i < 3; i++)
+        fillDoctorSchedule(2 - i);
+    fillDoctorSchedule(2);
+
     ll pNum;
 notValidNumber:
     heading("Login/SignUp");
