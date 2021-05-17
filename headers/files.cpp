@@ -181,7 +181,7 @@ void fillSchedule(string fName, string date, string time, string docPath, bool p
 
         string slot = "10:00";
         int count = 0;
-        while ((stoi(slot.substr(0, 2)) <= stoi(time.substr(0, 2))) && count < 10)
+        while ((stoi(slot.substr(0, 2)) <= stoi(time.substr(0, 2))) && count < 9)
         {
             schedule << slot;
             schedule << "\tTaken" << endl;
@@ -244,8 +244,14 @@ void fillDoctorSchedule(int inc)
 
             fstream record;
             record.open(docPath + "/files.txt", ios::in);
+
+        getTop:
             string fName;
             getline(record, fName);
+
+            if (fName == ".gitkeep" || fName == "files.txt" || fName[0] == '\0' || fName[0] == '\n')
+                goto getTop;
+
             if (fName != (date + ".txt"))
                 fillSchedule(fName, date2, time, docPath, false);
             else
