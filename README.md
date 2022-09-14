@@ -15,7 +15,7 @@ Run `./main`
 # Development
 
 -   Made using C++ language
--   Compiler Required `C++17`
+-   Compiler Required `C++17 or Higher`
 -   Operating System `Windows`
 -   A Mini-Project for College work
 -   Github Repo [Here](https://github.com/OutdatedGuy/Mini-Project)
