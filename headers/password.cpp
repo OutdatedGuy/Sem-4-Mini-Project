@@ -15,6 +15,7 @@ string isExisting(ll num)
             return code;
         }
     }
+    file.close();
     return "-1";
 }
 
